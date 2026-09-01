@@ -37,8 +37,8 @@ def render():
 
     # --- Load data ---
     df = load_data()
-    if df is None:
-        st.warning("Unable to load the student dataset. Please check the data file.")
+    if df is None or df.empty:
+        st.warning("Unable to load the student dataset or dataset is empty. Please check the data file.")
         return
 
     stats = get_summary_stats(df)
@@ -80,7 +80,7 @@ def render():
     with chart_col1:
         st.markdown('<p class="section-header">Performance Distribution</p>', unsafe_allow_html=True)
 
-        category_counts = df["performance_category"].value_counts().reindex(["High", "Medium", "Low"])
+        category_counts = df["performance_category"].value_counts().reindex(["High", "Medium", "Low"], fill_value=0)
         fig_donut = go.Figure(data=[go.Pie(
             labels=category_counts.index,
             values=category_counts.values,
@@ -97,7 +97,7 @@ def render():
             showlegend=True,
             legend=dict(orientation="h", yanchor="bottom", y=-0.1, xanchor="center", x=0.5),
         )
-        st.plotly_chart(fig_donut, use_container_width=True)
+        st.plotly_chart(fig_donut)
 
     # ---- Chart 2: Attendance vs Performance ----
     with chart_col2:
@@ -124,7 +124,7 @@ def render():
             legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
         )
         fig_scatter1.update_traces(marker=dict(size=8))
-        st.plotly_chart(fig_scatter1, use_container_width=True)
+        st.plotly_chart(fig_scatter1)
 
     # ================================================================
     # CHARTS — Row 2 (two columns)
@@ -156,7 +156,7 @@ def render():
             legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
         )
         fig_scatter2.update_traces(marker=dict(size=8))
-        st.plotly_chart(fig_scatter2, use_container_width=True)
+        st.plotly_chart(fig_scatter2)
 
     # ---- Chart 4: Academic Factors by Category ----
     with chart_col4:
@@ -173,7 +173,7 @@ def render():
         }
 
         grouped = df.groupby("performance_category")[factor_cols].mean()
-        grouped = grouped.reindex(["High", "Medium", "Low"])
+        grouped = grouped.reindex(["High", "Medium", "Low"], fill_value=0)
         # Scale study_hours ×10 for visual comparability
         grouped["study_hours"] = grouped["study_hours"] * 10
 
@@ -194,7 +194,7 @@ def render():
             legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5),
             yaxis_title="Average Value",
         )
-        st.plotly_chart(fig_bar, use_container_width=True)
+        st.plotly_chart(fig_bar)
 
     # ================================================================
     # RECENT STUDENT RECORDS
@@ -210,7 +210,6 @@ def render():
 
     st.dataframe(
         display_df,
-        use_container_width=True,
         hide_index=True,
         column_config={
             "Attendance (%)": st.column_config.NumberColumn(format="%.1f%%"),
