@@ -17,6 +17,7 @@ Contains the prediction function used by the Student Prediction page.
 # need to change when the real model is plugged in.
 # ============================================================
 """
+import math
 
 
 def predict_performance(attendance, internal_marks, assignment_marks,
@@ -52,13 +53,24 @@ def predict_performance(attendance, internal_marks, assignment_marks,
     """
 
     # ------------------------------------------------------------------
-    # Step 1: Validate inputs
+    # Step 1: Validate and sanitize inputs
     # ------------------------------------------------------------------
-    attendance = max(0, min(100, float(attendance)))
-    internal_marks = max(0, min(100, float(internal_marks)))
-    assignment_marks = max(0, min(100, float(assignment_marks)))
-    previous_marks = max(0, min(100, float(previous_marks)))
-    study_hours = max(0, min(12, float(study_hours)))
+    def _clean(val, min_v, max_v, default=0.0):
+        try:
+            if val is None:
+                return default
+            f_val = float(val)
+            if math.isnan(f_val) or math.isinf(f_val):
+                return default
+            return max(min_v, min(max_v, f_val))
+        except (ValueError, TypeError):
+            return default
+
+    attendance = _clean(attendance, 0.0, 100.0, default=75.0)
+    internal_marks = _clean(internal_marks, 0.0, 100.0, default=65.0)
+    assignment_marks = _clean(assignment_marks, 0.0, 100.0, default=70.0)
+    previous_marks = _clean(previous_marks, 0.0, 100.0, default=60.0)
+    study_hours = _clean(study_hours, 0.0, 12.0, default=3.5)
 
     # ------------------------------------------------------------------
     # Step 2: Calculate weighted composite score
