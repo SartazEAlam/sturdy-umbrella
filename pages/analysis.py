@@ -49,8 +49,8 @@ def render():
 
     # --- Load data ---
     df = load_data()
-    if df is None:
-        st.warning("Unable to load dataset.")
+    if df is None or df.empty:
+        st.warning("Unable to load dataset or dataset is empty.")
         return
 
     # ================================================================
@@ -58,7 +58,7 @@ def render():
     # ================================================================
     st.markdown('<p class="section-header">📊 Performance Category Distribution</p>', unsafe_allow_html=True)
 
-    cat_counts = df["performance_category"].value_counts().reindex(CATEGORY_ORDER)
+    cat_counts = df["performance_category"].value_counts().reindex(CATEGORY_ORDER, fill_value=0)
 
     fig_dist = go.Figure()
     fig_dist.add_trace(go.Bar(
@@ -76,13 +76,13 @@ def render():
         xaxis_title="Performance Category",
         yaxis_title="Number of Students",
     )
-    st.plotly_chart(fig_dist, use_container_width=True)
+    st.plotly_chart(fig_dist)
 
     # Show counts as metrics
     dist_cols = st.columns(3)
     for col, cat in zip(dist_cols, CATEGORY_ORDER):
         count = int(cat_counts.get(cat, 0))
-        pct = round(count / len(df) * 100, 1)
+        pct = round(count / len(df) * 100, 1) if len(df) > 0 else 0.0
         col.metric(f"{cat} Performers", f"{count} ({pct}%)")
 
     st.divider()
@@ -112,7 +112,7 @@ def render():
             title="Attendance Distribution by Category",
             title_font_size=14,
         )
-        st.plotly_chart(fig_att_box, use_container_width=True)
+        st.plotly_chart(fig_att_box)
 
     with att_col2:
         fig_att_hist = px.histogram(
@@ -134,7 +134,7 @@ def render():
             title_font_size=14,
             legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5),
         )
-        st.plotly_chart(fig_att_hist, use_container_width=True)
+        st.plotly_chart(fig_att_hist)
 
     st.divider()
 
@@ -163,25 +163,43 @@ def render():
             title="Study Hours Distribution by Category",
             title_font_size=14,
         )
-        st.plotly_chart(fig_sh_box, use_container_width=True)
+        st.plotly_chart(fig_sh_box)
 
     with sh_col2:
-        fig_sh_scatter = px.scatter(
-            df,
-            x="study_hours",
-            y="performance_score",
-            color="performance_category",
-            color_discrete_map=CATEGORY_COLORS,
-            category_orders={"performance_category": CATEGORY_ORDER},
-            labels={
-                "study_hours": "Study Hours (per day)",
-                "performance_score": "Performance Score",
-                "performance_category": "Category",
-            },
-            template=CHART_TEMPLATE,
-            opacity=0.7,
-            trendline="ols",
-        )
+        try:
+            fig_sh_scatter = px.scatter(
+                df,
+                x="study_hours",
+                y="performance_score",
+                color="performance_category",
+                color_discrete_map=CATEGORY_COLORS,
+                category_orders={"performance_category": CATEGORY_ORDER},
+                labels={
+                    "study_hours": "Study Hours (per day)",
+                    "performance_score": "Performance Score",
+                    "performance_category": "Category",
+                },
+                template=CHART_TEMPLATE,
+                opacity=0.7,
+                trendline="ols",
+            )
+        except Exception:
+            # Fallback without trendline if statsmodels encounters numerical singularities
+            fig_sh_scatter = px.scatter(
+                df,
+                x="study_hours",
+                y="performance_score",
+                color="performance_category",
+                color_discrete_map=CATEGORY_COLORS,
+                category_orders={"performance_category": CATEGORY_ORDER},
+                labels={
+                    "study_hours": "Study Hours (per day)",
+                    "performance_score": "Performance Score",
+                    "performance_category": "Category",
+                },
+                template=CHART_TEMPLATE,
+                opacity=0.7,
+            )
         fig_sh_scatter.update_layout(
             height=350,
             margin=dict(t=20, b=20, l=20, r=20),
@@ -189,7 +207,7 @@ def render():
             title_font_size=14,
             legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5),
         )
-        st.plotly_chart(fig_sh_scatter, use_container_width=True)
+        st.plotly_chart(fig_sh_scatter)
 
     st.divider()
 
@@ -218,7 +236,7 @@ def render():
             title="Internal Marks Distribution by Category",
             title_font_size=14,
         )
-        st.plotly_chart(fig_im_box, use_container_width=True)
+        st.plotly_chart(fig_im_box)
 
     with im_col2:
         fig_im_violin = px.violin(
@@ -239,7 +257,7 @@ def render():
             title="Internal Marks Violin Plot",
             title_font_size=14,
         )
-        st.plotly_chart(fig_im_violin, use_container_width=True)
+        st.plotly_chart(fig_im_violin)
 
     st.divider()
 
@@ -274,7 +292,7 @@ def render():
         height=500,
         margin=dict(t=30, b=20, l=20, r=20),
     )
-    st.plotly_chart(fig_heatmap, use_container_width=True)
+    st.plotly_chart(fig_heatmap)
 
     st.divider()
 
@@ -296,7 +314,7 @@ def render():
     )
 
     # Extract correlations with performance_score (excluding self)
-    perf_corr = corr_matrix["performance_score"].drop("performance_score").sort_values(ascending=False)
+    perf_corr = corr_matrix["performance_score"].drop("performance_score").sort_values(ascending=False).fillna(0)
 
     factor_display_names = {
         "attendance": "Attendance",
@@ -323,12 +341,13 @@ def render():
         xaxis_title="Correlation with Performance Score",
         xaxis=dict(range=[-1, 1]),
     )
-    st.plotly_chart(fig_factors, use_container_width=True)
+    st.plotly_chart(fig_factors)
 
     # Summary interpretation
-    top_factor = factor_display_names.get(perf_corr.index[0], perf_corr.index[0])
-    st.info(
-        f"📌 **Strongest observed association:** {top_factor} shows the highest "
-        f"correlation ({perf_corr.values[0]:.3f}) with overall performance score "
-        f"in the sample dataset."
-    )
+    if not perf_corr.empty:
+        top_factor = factor_display_names.get(perf_corr.index[0], perf_corr.index[0])
+        st.info(
+            f"📌 **Strongest observed association:** {top_factor} shows the highest "
+            f"correlation ({perf_corr.values[0]:.3f}) with overall performance score "
+            f"in the sample dataset."
+        )
