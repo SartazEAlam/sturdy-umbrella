@@ -149,6 +149,7 @@ def render():
                 ("📊", "Pandas", "Data manipulation and analysis"),
                 ("🔢", "NumPy", "Numerical computing"),
                 ("📈", "Plotly", "Interactive visualizations"),
+                ("📐", "Statsmodels", "Statistical modeling & trendlines"),
                 ("🤖", "Scikit-learn", "ML models (next phase)"),
             ],
         ),
