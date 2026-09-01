@@ -37,6 +37,7 @@ This system collects student academic information (attendance, examination marks
 - **Pandas** — Data manipulation and analysis
 - **NumPy** — Numerical computing
 - **Plotly** — Interactive data visualizations
+- **Statsmodels** — Statistical modeling and trendline estimation
 - **Scikit-learn** — Machine learning (to be integrated in Phase 2)
 
 ---
