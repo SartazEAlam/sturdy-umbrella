@@ -68,6 +68,10 @@ def load_data(filepath=None):
         # Drop rows that became NaN after coercion (shouldn't happen with clean data)
         df = df.dropna(subset=numeric_cols)
 
+        if df.empty:
+            st.error("The dataset contains no valid student records.")
+            return None
+
         return df
 
     except FileNotFoundError:
@@ -117,9 +121,9 @@ def get_summary_stats(df):
 
     return {
         "total_students": len(df),
-        "avg_attendance": round(df["attendance"].mean(), 1),
-        "avg_internal_marks": round(df["internal_marks"].mean(), 1),
-        "avg_study_hours": round(df["study_hours"].mean(), 1),
+        "avg_attendance": round(float(df["attendance"].mean()), 1) if not df["attendance"].empty else 0.0,
+        "avg_internal_marks": round(float(df["internal_marks"].mean()), 1) if not df["internal_marks"].empty else 0.0,
+        "avg_study_hours": round(float(df["study_hours"].mean()), 1) if not df["study_hours"].empty else 0.0,
         "high_performers": int(category_counts.get("High", 0)),
         "medium_performers": int(category_counts.get("Medium", 0)),
         "low_performers": int(category_counts.get("Low", 0)),
