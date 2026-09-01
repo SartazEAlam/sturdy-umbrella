@@ -110,7 +110,7 @@ def render():
         # Submit button
         submitted = st.form_submit_button(
             "🔍 Predict Performance",
-            use_container_width=True,
+            width="stretch",
         )
 
     # ================================================================
@@ -124,7 +124,7 @@ def render():
         )
 
         style = CATEGORY_STYLES[category]
-        sid_display = student_id if student_id.strip() else "—"
+        sid_display = student_id.strip() if student_id and student_id.strip() else "—"
 
         st.markdown("<br>", unsafe_allow_html=True)
 
@@ -146,11 +146,11 @@ def render():
         metric_cols = st.columns(6)
         metric_items = [
             ("Student ID", sid_display),
-            ("Attendance", f"{attendance}%"),
-            ("Internal Marks", str(internal_marks)),
-            ("Assignment Marks", str(assignment_marks)),
-            ("Previous Marks", str(previous_marks)),
-            ("Study Hours", f"{study_hours} hrs"),
+            ("Attendance", f"{details['attendance']}%"),
+            ("Internal Marks", str(details["internal_marks"])),
+            ("Assignment Marks", str(details["assignment_marks"])),
+            ("Previous Marks", str(details["previous_marks"])),
+            ("Study Hours", f"{details['study_hours']} hrs"),
         ]
 
         for col, (label, val) in zip(metric_cols, metric_items):
@@ -203,7 +203,7 @@ def render():
                 height=400,
                 margin=dict(t=40, b=40, l=60, r=60),
             )
-            st.plotly_chart(fig_radar, use_container_width=True)
+            st.plotly_chart(fig_radar)
 
         with viz_col2:
             # Weighted contribution bar chart
@@ -228,11 +228,16 @@ def render():
                 xaxis_title="Contribution to Score",
                 xaxis=dict(range=[0, 30]),
             )
-            st.plotly_chart(fig_contrib, use_container_width=True)
+            st.plotly_chart(fig_contrib)
 
 
 def _hex_to_rgb(hex_color):
     """Convert hex color string to comma-separated RGB values."""
-    hex_color = hex_color.lstrip("#")
-    r, g, b = int(hex_color[0:2], 16), int(hex_color[2:4], 16), int(hex_color[4:6], 16)
-    return f"{r}, {g}, {b}"
+    try:
+        hex_color = hex_color.lstrip("#")
+        if len(hex_color) == 6:
+            r, g, b = int(hex_color[0:2], 16), int(hex_color[2:4], 16), int(hex_color[4:6], 16)
+            return f"{r}, {g}, {b}"
+    except Exception:
+        pass
+    return "67, 97, 238"
