@@ -115,7 +115,6 @@ def render():
 
     st.dataframe(
         display_df,
-        use_container_width=True,
         hide_index=True,
         column_config={
             "Model": st.column_config.TextColumn("Model", width="medium"),
@@ -157,7 +156,7 @@ def render():
         yaxis=dict(range=[0, 1], title="Score", tickformat=".0%"),
         legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
     )
-    st.plotly_chart(fig_compare, use_container_width=True)
+    st.plotly_chart(fig_compare)
 
     st.divider()
 
@@ -186,7 +185,7 @@ def render():
         margin=dict(t=30, b=30, l=60, r=60),
         legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
     )
-    st.plotly_chart(fig_radar, use_container_width=True)
+    st.plotly_chart(fig_radar)
 
     st.divider()
 
