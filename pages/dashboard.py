@@ -85,6 +85,7 @@ def render():
             labels=category_counts.index,
             values=category_counts.values,
             hole=0.5,
+            sort=False,
             marker=dict(colors=[CATEGORY_COLORS[cat] for cat in category_counts.index]),
             textinfo="label+percent",
             textfont=dict(size=13),
@@ -93,9 +94,9 @@ def render():
         fig_donut.update_layout(
             template=CHART_TEMPLATE,
             height=380,
-            margin=dict(t=20, b=20, l=20, r=20),
+            margin=dict(t=20, b=40, l=20, r=20),
             showlegend=True,
-            legend=dict(orientation="h", yanchor="bottom", y=-0.1, xanchor="center", x=0.5),
+            legend=dict(orientation="h", yanchor="top", y=-0.05, xanchor="center", x=0.5),
         )
         st.plotly_chart(fig_donut)
 
@@ -120,8 +121,8 @@ def render():
         )
         fig_scatter1.update_layout(
             height=380,
-            margin=dict(t=20, b=20, l=20, r=20),
-            legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
+            margin=dict(t=30, b=60, l=60, r=20),
+            legend=dict(orientation="h", yanchor="top", y=-0.22, xanchor="center", x=0.5, title_text=""),
         )
         fig_scatter1.update_traces(marker=dict(size=8))
         st.plotly_chart(fig_scatter1)
@@ -152,8 +153,8 @@ def render():
         )
         fig_scatter2.update_layout(
             height=380,
-            margin=dict(t=20, b=20, l=20, r=20),
-            legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
+            margin=dict(t=30, b=60, l=60, r=20),
+            legend=dict(orientation="h", yanchor="top", y=-0.22, xanchor="center", x=0.5, title_text=""),
         )
         fig_scatter2.update_traces(marker=dict(size=8))
         st.plotly_chart(fig_scatter2)
@@ -190,8 +191,8 @@ def render():
             barmode="group",
             template=CHART_TEMPLATE,
             height=380,
-            margin=dict(t=20, b=20, l=20, r=20),
-            legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5),
+            margin=dict(t=30, b=60, l=60, r=20),
+            legend=dict(orientation="h", yanchor="top", y=-0.22, xanchor="center", x=0.5),
             yaxis_title="Average Value",
         )
         st.plotly_chart(fig_bar)
