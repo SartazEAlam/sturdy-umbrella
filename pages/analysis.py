@@ -107,7 +107,7 @@ def render():
         )
         fig_att_box.update_layout(
             height=350,
-            margin=dict(t=20, b=20, l=20, r=20),
+            margin=dict(t=30, b=40, l=50, r=20),
             showlegend=False,
             title="Attendance Distribution by Category",
             title_font_size=14,
@@ -129,10 +129,10 @@ def render():
         )
         fig_att_hist.update_layout(
             height=350,
-            margin=dict(t=20, b=20, l=20, r=20),
+            margin=dict(t=30, b=60, l=50, r=20),
             title="Attendance Histogram",
             title_font_size=14,
-            legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5),
+            legend=dict(orientation="h", yanchor="top", y=-0.22, xanchor="center", x=0.5, title_text=""),
         )
         st.plotly_chart(fig_att_hist)
 
@@ -158,7 +158,7 @@ def render():
         )
         fig_sh_box.update_layout(
             height=350,
-            margin=dict(t=20, b=20, l=20, r=20),
+            margin=dict(t=30, b=40, l=50, r=20),
             showlegend=False,
             title="Study Hours Distribution by Category",
             title_font_size=14,
@@ -202,10 +202,10 @@ def render():
             )
         fig_sh_scatter.update_layout(
             height=350,
-            margin=dict(t=20, b=20, l=20, r=20),
+            margin=dict(t=30, b=60, l=50, r=20),
             title="Study Hours vs Performance (with trendline)",
             title_font_size=14,
-            legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5),
+            legend=dict(orientation="h", yanchor="top", y=-0.22, xanchor="center", x=0.5, title_text=""),
         )
         st.plotly_chart(fig_sh_scatter)
 
@@ -231,7 +231,7 @@ def render():
         )
         fig_im_box.update_layout(
             height=350,
-            margin=dict(t=20, b=20, l=20, r=20),
+            margin=dict(t=30, b=40, l=50, r=20),
             showlegend=False,
             title="Internal Marks Distribution by Category",
             title_font_size=14,
@@ -252,7 +252,7 @@ def render():
         )
         fig_im_violin.update_layout(
             height=350,
-            margin=dict(t=20, b=20, l=20, r=20),
+            margin=dict(t=30, b=40, l=50, r=20),
             showlegend=False,
             title="Internal Marks Violin Plot",
             title_font_size=14,
@@ -290,7 +290,7 @@ def render():
     )
     fig_heatmap.update_layout(
         height=500,
-        margin=dict(t=30, b=20, l=20, r=20),
+        margin=dict(t=30, b=50, l=60, r=20),
     )
     st.plotly_chart(fig_heatmap)
 
@@ -337,9 +337,10 @@ def render():
     fig_factors.update_layout(
         template=CHART_TEMPLATE,
         height=300,
-        margin=dict(t=20, b=20, l=10, r=50),
+        margin=dict(t=20, b=30, l=120, r=50),
         xaxis_title="Correlation with Performance Score",
         xaxis=dict(range=[-1, 1]),
+        yaxis=dict(autorange="reversed"),
     )
     st.plotly_chart(fig_factors)
 
