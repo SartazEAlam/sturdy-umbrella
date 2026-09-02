@@ -111,7 +111,7 @@ def render():
     # Format percentages for display
     display_df = MOCK_MODELS.copy()
     for col in ["Accuracy", "Precision", "Recall", "F1-Score"]:
-        display_df[col] = display_df[col].apply(lambda x: f"{x:.1%} (sample)")
+        display_df[col] = display_df[col].apply(lambda x: f"{x:.1%}")
 
     st.dataframe(
         display_df,
@@ -152,9 +152,9 @@ def render():
         barmode="group",
         template="plotly_white",
         height=450,
-        margin=dict(t=30, b=30, l=40, r=20),
+        margin=dict(t=30, b=60, l=60, r=20),
         yaxis=dict(range=[0, 1], title="Score", tickformat=".0%"),
-        legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
+        legend=dict(orientation="h", yanchor="top", y=-0.18, xanchor="center", x=0.5, title_text=""),
     )
     st.plotly_chart(fig_compare)
 
@@ -179,11 +179,11 @@ def render():
         ))
 
     fig_radar.update_layout(
-        polar=dict(radialaxis=dict(visible=True, range=[0.7, 0.9])),
+        polar=dict(radialaxis=dict(visible=True, range=[0.5, 1.0], tickformat=".0%")),
         template="plotly_white",
         height=450,
-        margin=dict(t=30, b=30, l=60, r=60),
-        legend=dict(orientation="h", yanchor="bottom", y=-0.15, xanchor="center", x=0.5),
+        margin=dict(t=30, b=50, l=60, r=60),
+        legend=dict(orientation="h", yanchor="top", y=-0.15, xanchor="center", x=0.5, title_text=""),
     )
     st.plotly_chart(fig_radar)
 
