@@ -15,7 +15,7 @@ from utils.prediction import predict_performance
 # ------------------------------------------------------------------
 CATEGORY_STYLES = {
     "High": {"color": "#06d6a0", "emoji": "🟢", "bg": "#f0fdf4"},
-    "Medium": {"color": "#ffa600", "emoji": "🟡", "bg": "#fffbeb"},
+    "Medium": {"color": "#ffd166", "emoji": "🟡", "bg": "#fffbeb"},
     "Low": {"color": "#ef476f", "emoji": "🔴", "bg": "#fef2f2"},
 }
 
@@ -129,12 +129,13 @@ def render():
         st.markdown("<br>", unsafe_allow_html=True)
 
         # ---- Result Card ----
+        sid_badge = f'<span style="font-size: 0.95rem; font-weight: 500; opacity: 0.85;">Student ID: <b>{sid_display}</b> &nbsp;•&nbsp; </span>' if sid_display != "—" else ""
         st.markdown(
             f"""
             <div class="result-card {category.lower()}">
                 <div class="result-label">Predicted Performance</div>
                 <div class="result-value {category.lower()}">{style['emoji']} {category.upper()}</div>
-                <div class="result-score">Overall Score: {score} / 100</div>
+                <div class="result-score">{sid_badge}Overall Score: <b>{score} / 100</b></div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -143,9 +144,8 @@ def render():
         # ---- Score Breakdown ----
         st.markdown('<p class="section-header">📊 Score Breakdown</p>', unsafe_allow_html=True)
 
-        metric_cols = st.columns(6)
+        metric_cols = st.columns(5)
         metric_items = [
-            ("Student ID", sid_display),
             ("Attendance", f"{details['attendance']}%"),
             ("Internal Marks", str(details["internal_marks"])),
             ("Assignment Marks", str(details["assignment_marks"])),
@@ -227,6 +227,7 @@ def render():
                 margin=dict(t=20, b=20, l=10, r=40),
                 xaxis_title="Contribution to Score",
                 xaxis=dict(range=[0, 30]),
+                yaxis=dict(autorange="reversed"),
             )
             st.plotly_chart(fig_contrib)
 
