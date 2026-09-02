@@ -70,9 +70,9 @@ def render():
 
     with col2:
         st.markdown('<p class="section-header">🏷️ Performance Categories</p>', unsafe_allow_html=True)
-        st.markdown("&nbsp;&nbsp;&nbsp;🔴&nbsp;&nbsp;**Low** — Below average performance")
-        st.markdown("&nbsp;&nbsp;&nbsp;🟡&nbsp;&nbsp;**Medium** — Average performance")
         st.markdown("&nbsp;&nbsp;&nbsp;🟢&nbsp;&nbsp;**High** — Above average performance")
+        st.markdown("&nbsp;&nbsp;&nbsp;🟡&nbsp;&nbsp;**Medium** — Average performance")
+        st.markdown("&nbsp;&nbsp;&nbsp;🔴&nbsp;&nbsp;**Low** — Below average performance")
 
     st.divider()
 
@@ -183,13 +183,27 @@ def render():
         ("8️⃣", "Prediction & Dashboard", "Deploy interactive Streamlit dashboard"),
     ]
 
-    # Display as a visual flow
-    flow_cols = st.columns(4)
-    for i, (icon, title, desc) in enumerate(workflow_steps):
-        with flow_cols[i % 4]:
+    # Display as a visual flow (2 rows of 4 columns)
+    row1_cols = st.columns(4)
+    for col, (icon, title, desc) in zip(row1_cols, workflow_steps[:4]):
+        with col:
             st.markdown(
                 f"""
-                <div style="text-align: center; padding: 0.8rem 0.3rem; margin-bottom: 0.5rem;">
+                <div style="text-align: center; padding: 0.8rem 0.3rem; margin-bottom: 0.5rem; min-height: 110px;">
+                    <div style="font-size: 1.5rem;">{icon}</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: #1a1a2e; margin: 0.2rem 0;">{title}</div>
+                    <div style="font-size: 0.75rem; color: #6c757d;">{desc}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+    row2_cols = st.columns(4)
+    for col, (icon, title, desc) in zip(row2_cols, workflow_steps[4:]):
+        with col:
+            st.markdown(
+                f"""
+                <div style="text-align: center; padding: 0.8rem 0.3rem; margin-bottom: 0.5rem; min-height: 110px;">
                     <div style="font-size: 1.5rem;">{icon}</div>
                     <div style="font-weight: 600; font-size: 0.85rem; color: #1a1a2e; margin: 0.2rem 0;">{title}</div>
                     <div style="font-size: 0.75rem; color: #6c757d;">{desc}</div>
