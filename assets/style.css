@@ -36,6 +36,12 @@ html, body, [class*="css"] {
     text-align: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .kpi-card:hover {
@@ -123,7 +129,7 @@ html, body, [class*="css"] {
 }
 
 .result-value.high { color: #06d6a0; }
-.result-value.medium { color: #ffa600; }
+.result-value.medium { color: #d97706; }
 .result-value.low { color: #ef476f; }
 
 .result-score {
