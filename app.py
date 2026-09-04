@@ -74,6 +74,16 @@ with st.sidebar:
         label_visibility="collapsed",
     )
 
+    st.divider()
+
+    # Theme selector
+    st.radio(
+        "Theme",
+        options=["☀️ Light", "🌙 Dark"],
+        horizontal=True,
+        key="app_theme",
+    )
+
     # Footer
     st.divider()
     st.markdown(
@@ -87,6 +97,49 @@ with st.sidebar:
                 Prediction & Analysis System
             </div>
         </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# ------------------------------------------------------------------
+# Apply Dynamic Theme Styles
+# ------------------------------------------------------------------
+if st.session_state.get("app_theme") == "🌙 Dark":
+    st.markdown(
+        """
+        <style>
+        .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+            background-color: #0e1117 !important;
+            color: #fafafa !important;
+        }
+        [data-testid="stSidebar"] {
+            background-color: #161a23 !important;
+            border-right: 1px solid #2d323f !important;
+        }
+        [data-testid="stSidebar"] * {
+            color: #e2e8f0;
+        }
+        :root, body, .stApp {
+            --text-primary: #f1f3f9 !important;
+            --text-secondary: #94a3b8 !important;
+            --text-muted: #cbd5e1 !important;
+            --card-bg: linear-gradient(135deg, #1e222b 0%, #151821 100%) !important;
+            --card-border: #2d323f !important;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+            --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
+            --card-high-bg: linear-gradient(135deg, #0a2618 0%, #151821 100%) !important;
+            --card-medium-bg: linear-gradient(135deg, #2b1f06 0%, #151821 100%) !important;
+            --card-low-bg: linear-gradient(135deg, #2c0e14 0%, #151821 100%) !important;
+            --info-bg: #151f33 !important;
+            --info-text: #e2e8f0 !important;
+            --banner-bg: linear-gradient(135deg, #332701 0%, #241c00 100%) !important;
+            --banner-border: #856404 !important;
+            --banner-text: #ffd166 !important;
+            --border-color: #2d323f !important;
+            --about-card-bg: #1a1e27 !important;
+            --chart-container-bg: #1a1e27 !important;
+        }
+        </style>
         """,
         unsafe_allow_html=True,
     )
