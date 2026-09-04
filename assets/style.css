@@ -1,10 +1,56 @@
 /* ============================================================
    Student Performance Prediction & Analysis System
-   Custom CSS Styles
+   Custom CSS Styles with Light & Dark Theme Support
    ============================================================ */
 
 /* ---------- Google Font Import ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---------- Theme Color Variables (Light Theme Default) ---------- */
+:root {
+    --text-primary: #1a1a2e;
+    --text-secondary: #6c757d;
+    --text-muted: #495057;
+    --card-bg: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    --card-border: #e9ecef;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --card-high-bg: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+    --card-medium-bg: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+    --card-low-bg: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+    --info-bg: #f0f4ff;
+    --info-text: #2d3748;
+    --banner-bg: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+    --banner-border: #ffc107;
+    --banner-text: #856404;
+    --border-color: #e9ecef;
+    --about-card-bg: #ffffff;
+    --chart-container-bg: #ffffff;
+}
+
+/* ---------- Dark Theme Overrides (System Preference) ---------- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #f1f3f9;
+        --text-secondary: #94a3b8;
+        --text-muted: #cbd5e1;
+        --card-bg: linear-gradient(135deg, #1e222b 0%, #151821 100%);
+        --card-border: #2d323f;
+        --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+        --card-high-bg: linear-gradient(135deg, #0a2618 0%, #151821 100%);
+        --card-medium-bg: linear-gradient(135deg, #2b1f06 0%, #151821 100%);
+        --card-low-bg: linear-gradient(135deg, #2c0e14 0%, #151821 100%);
+        --info-bg: #151f33;
+        --info-text: #e2e8f0;
+        --banner-bg: linear-gradient(135deg, #332701 0%, #241c00 100%);
+        --banner-border: #856404;
+        --banner-text: #ffd166;
+        --border-color: #2d323f;
+        --about-card-bg: #1a1e27;
+        --chart-container-bg: #1a1e27;
+    }
+}
 
 /* ---------- Global Overrides ---------- */
 html, body, [class*="css"] {
@@ -23,26 +69,26 @@ html, body, [class*="css"] {
 .main-header {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: var(--text-primary);
     margin-bottom: 0.2rem;
     letter-spacing: -0.5px;
 }
 
 .main-subtitle {
     font-size: 1.05rem;
-    color: #6c757d;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
     font-weight: 400;
 }
 
 /* ---------- KPI Metric Cards ---------- */
 .kpi-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border: 1px solid #e9ecef;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 1.4rem 1.2rem;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--card-shadow);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     height: 100%;
     display: flex;
@@ -54,13 +100,13 @@ html, body, [class*="css"] {
 
 .kpi-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--card-hover-shadow);
 }
 
 .kpi-card .kpi-value {
     font-size: 1.9rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: var(--text-primary);
     margin: 0.3rem 0;
     line-height: 1.2;
 }
@@ -68,7 +114,7 @@ html, body, [class*="css"] {
 .kpi-card .kpi-label {
     font-size: 0.82rem;
     font-weight: 500;
-    color: #6c757d;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.8px;
 }
@@ -89,42 +135,43 @@ html, body, [class*="css"] {
 .section-header {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: var(--text-primary);
     margin-top: 2rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e9ecef;
+    border-bottom: 2px solid var(--border-color);
 }
 
 /* ---------- Result Card ---------- */
 .result-card {
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 16px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--card-shadow);
     margin: 1.5rem 0;
 }
 
 .result-card.high {
     border: 2px solid #06d6a0;
-    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+    background: var(--card-high-bg);
 }
 
 .result-card.medium {
     border: 2px solid #ffd166;
-    background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+    background: var(--card-medium-bg);
 }
 
 .result-card.low {
     border: 2px solid #ef476f;
-    background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+    background: var(--card-low-bg);
 }
 
 .result-label {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #6c757d;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-bottom: 0.5rem;
@@ -142,31 +189,31 @@ html, body, [class*="css"] {
 
 .result-score {
     font-size: 1.1rem;
-    color: #495057;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
 /* ---------- Info Box ---------- */
 .info-box {
-    background: #f0f4ff;
+    background: var(--info-bg);
     border-left: 4px solid #4361ee;
     border-radius: 0 8px 8px 0;
     padding: 1rem 1.2rem;
     margin: 1rem 0;
     font-size: 0.95rem;
-    color: #2d3748;
+    color: var(--info-text);
     line-height: 1.6;
 }
 
 /* ---------- Disclaimer Banner ---------- */
 .prototype-banner {
-    background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
-    border: 1px solid #ffc107;
+    background: var(--banner-bg);
+    border: 1px solid var(--banner-border);
     border-radius: 10px;
     padding: 0.8rem 1.2rem;
     margin-bottom: 1.5rem;
     font-size: 0.9rem;
-    color: #856404;
+    color: var(--banner-text);
     text-align: center;
     font-weight: 500;
 }
@@ -175,7 +222,7 @@ html, body, [class*="css"] {
 .sidebar-title {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: var(--text-primary);
     margin-bottom: 0.3rem;
 }
 
@@ -183,18 +230,18 @@ html, body, [class*="css"] {
     position: fixed;
     bottom: 1rem;
     font-size: 0.78rem;
-    color: #adb5bd;
+    color: var(--text-secondary);
     line-height: 1.5;
 }
 
 /* ---------- About Page Cards ---------- */
 .about-card {
-    background: #ffffff;
-    border: 1px solid #e9ecef;
+    background: var(--about-card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--card-shadow);
 }
 
 .about-card h3 {
@@ -208,17 +255,17 @@ html, body, [class*="css"] {
 .dataframe-container {
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--card-shadow);
 }
 
 /* ---------- Chart Container ---------- */
 .chart-container {
-    background: #ffffff;
-    border: 1px solid #f0f0f0;
+    background: var(--chart-container-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 1rem;
     margin-bottom: 1rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--card-shadow);
 }
 
 /* ---------- Metric Breakdown ---------- */
@@ -227,7 +274,7 @@ html, body, [class*="css"] {
     justify-content: space-between;
     align-items: center;
     padding: 0.6rem 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .metric-row:last-child {
@@ -236,12 +283,12 @@ html, body, [class*="css"] {
 
 .metric-name {
     font-size: 0.9rem;
-    color: #6c757d;
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
 .metric-val {
     font-size: 1rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: var(--text-primary);
 }
