@@ -22,7 +22,9 @@ CATEGORY_COLORS = {
     "Low": "#ef476f",
 }
 CATEGORY_ORDER = ["High", "Medium", "Low"]
-CHART_TEMPLATE = "plotly_white"
+
+def get_chart_template():
+    return "plotly_dark" if st.session_state.get("app_theme") == "🌙 Dark" else "plotly_white"
 
 
 def render():
@@ -67,10 +69,12 @@ def render():
         marker_color=[CATEGORY_COLORS[c] for c in cat_counts.index],
         text=cat_counts.values,
         textposition="outside",
-        textfont=dict(size=14, color="#1a1a2e"),
+        textfont=dict(size=14, color="#fafafa" if st.session_state.get("app_theme") == "🌙 Dark" else "#1a1a2e"),
     ))
     fig_dist.update_layout(
-        template=CHART_TEMPLATE,
+        template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         height=350,
         margin=dict(t=30, b=30, l=40, r=20),
         xaxis_title="Performance Category",
@@ -103,7 +107,9 @@ def render():
             color_discrete_map=CATEGORY_COLORS,
             category_orders={"performance_category": CATEGORY_ORDER},
             labels={"attendance": "Attendance (%)", "performance_category": "Category"},
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         )
         fig_att_box.update_layout(
             height=350,
@@ -123,7 +129,9 @@ def render():
             category_orders={"performance_category": CATEGORY_ORDER},
             nbins=20,
             labels={"attendance": "Attendance (%)", "performance_category": "Category"},
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
             barmode="overlay",
             opacity=0.7,
         )
@@ -154,7 +162,9 @@ def render():
             color_discrete_map=CATEGORY_COLORS,
             category_orders={"performance_category": CATEGORY_ORDER},
             labels={"study_hours": "Study Hours (per day)", "performance_category": "Category"},
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         )
         fig_sh_box.update_layout(
             height=350,
@@ -179,7 +189,9 @@ def render():
                     "performance_score": "Performance Score",
                     "performance_category": "Category",
                 },
-                template=CHART_TEMPLATE,
+                template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
                 opacity=0.7,
                 trendline="ols",
             )
@@ -197,7 +209,9 @@ def render():
                     "performance_score": "Performance Score",
                     "performance_category": "Category",
                 },
-                template=CHART_TEMPLATE,
+                template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
                 opacity=0.7,
             )
         fig_sh_scatter.update_layout(
@@ -227,7 +241,9 @@ def render():
             color_discrete_map=CATEGORY_COLORS,
             category_orders={"performance_category": CATEGORY_ORDER},
             labels={"internal_marks": "Internal Marks", "performance_category": "Category"},
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         )
         fig_im_box.update_layout(
             height=350,
@@ -247,7 +263,9 @@ def render():
             color_discrete_map=CATEGORY_COLORS,
             category_orders={"performance_category": CATEGORY_ORDER},
             labels={"internal_marks": "Internal Marks", "performance_category": "Category"},
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
             box=True,
         )
         fig_im_violin.update_layout(
@@ -285,7 +303,9 @@ def render():
         color_continuous_scale="RdBu_r",
         zmin=-1,
         zmax=1,
-        template=CHART_TEMPLATE,
+        template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         labels=dict(color="Correlation"),
     )
     fig_heatmap.update_layout(
@@ -335,7 +355,9 @@ def render():
         textposition="outside",
     ))
     fig_factors.update_layout(
-        template=CHART_TEMPLATE,
+        template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         height=300,
         margin=dict(t=20, b=30, l=120, r=50),
         xaxis_title="Correlation with Performance Score",
