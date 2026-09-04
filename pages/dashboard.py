@@ -20,7 +20,8 @@ CATEGORY_COLORS = {
     "Low": "#ef476f",
 }
 
-CHART_TEMPLATE = "plotly_white"
+def get_chart_template():
+    return "plotly_dark" if st.session_state.get("app_theme") == "🌙 Dark" else "plotly_white"
 
 
 def render():
@@ -92,7 +93,9 @@ def render():
             hovertemplate="<b>%{label}</b><br>Count: %{value}<br>Percentage: %{percent}<extra></extra>",
         )])
         fig_donut.update_layout(
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=380,
             margin=dict(t=20, b=40, l=20, r=20),
             showlegend=True,
@@ -116,10 +119,12 @@ def render():
                 "performance_score": "Performance Score",
                 "performance_category": "Category",
             },
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
             opacity=0.7,
         )
         fig_scatter1.update_layout(
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=380,
             margin=dict(t=30, b=60, l=60, r=20),
             legend=dict(orientation="h", yanchor="top", y=-0.22, xanchor="center", x=0.5, title_text=""),
@@ -148,10 +153,12 @@ def render():
                 "performance_score": "Performance Score",
                 "performance_category": "Category",
             },
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
             opacity=0.7,
         )
         fig_scatter2.update_layout(
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=380,
             margin=dict(t=30, b=60, l=60, r=20),
             legend=dict(orientation="h", yanchor="top", y=-0.22, xanchor="center", x=0.5, title_text=""),
@@ -189,7 +196,9 @@ def render():
 
         fig_bar.update_layout(
             barmode="group",
-            template=CHART_TEMPLATE,
+            template=get_chart_template(),
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=380,
             margin=dict(t=30, b=60, l=60, r=20),
             legend=dict(orientation="h", yanchor="top", y=-0.22, xanchor="center", x=0.5),
