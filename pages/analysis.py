@@ -108,10 +108,10 @@ def render():
             category_orders={"performance_category": CATEGORY_ORDER},
             labels={"attendance": "Attendance (%)", "performance_category": "Category"},
             template=get_chart_template(),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
         )
         fig_att_box.update_layout(
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=350,
             margin=dict(t=30, b=40, l=50, r=20),
             showlegend=False,
@@ -130,12 +130,12 @@ def render():
             nbins=20,
             labels={"attendance": "Attendance (%)", "performance_category": "Category"},
             template=get_chart_template(),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
             barmode="overlay",
             opacity=0.7,
         )
         fig_att_hist.update_layout(
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=350,
             margin=dict(t=30, b=60, l=50, r=20),
             title="Attendance Histogram",
@@ -163,10 +163,10 @@ def render():
             category_orders={"performance_category": CATEGORY_ORDER},
             labels={"study_hours": "Study Hours (per day)", "performance_category": "Category"},
             template=get_chart_template(),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
         )
         fig_sh_box.update_layout(
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=350,
             margin=dict(t=30, b=40, l=50, r=20),
             showlegend=False,
@@ -190,8 +190,6 @@ def render():
                     "performance_category": "Category",
                 },
                 template=get_chart_template(),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
                 opacity=0.7,
                 trendline="ols",
             )
@@ -210,11 +208,11 @@ def render():
                     "performance_category": "Category",
                 },
                 template=get_chart_template(),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
                 opacity=0.7,
             )
         fig_sh_scatter.update_layout(
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=350,
             margin=dict(t=30, b=60, l=50, r=20),
             title="Study Hours vs Performance (with trendline)",
@@ -242,10 +240,10 @@ def render():
             category_orders={"performance_category": CATEGORY_ORDER},
             labels={"internal_marks": "Internal Marks", "performance_category": "Category"},
             template=get_chart_template(),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
         )
         fig_im_box.update_layout(
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=350,
             margin=dict(t=30, b=40, l=50, r=20),
             showlegend=False,
@@ -264,11 +262,11 @@ def render():
             category_orders={"performance_category": CATEGORY_ORDER},
             labels={"internal_marks": "Internal Marks", "performance_category": "Category"},
             template=get_chart_template(),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
             box=True,
         )
         fig_im_violin.update_layout(
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
             height=350,
             margin=dict(t=30, b=40, l=50, r=20),
             showlegend=False,
@@ -304,11 +302,11 @@ def render():
         zmin=-1,
         zmax=1,
         template=get_chart_template(),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
         labels=dict(color="Correlation"),
     )
     fig_heatmap.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         height=500,
         margin=dict(t=30, b=50, l=60, r=20),
     )
