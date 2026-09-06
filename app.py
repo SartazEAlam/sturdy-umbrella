@@ -38,10 +38,14 @@ def load_css():
 
 load_css()
 
+import importlib
+
 # ------------------------------------------------------------------
-# Import page modules
+# Import page modules (with hot-reloading support)
 # ------------------------------------------------------------------
 from pages import dashboard, prediction, analysis, model_comparison, about
+for _mod in (dashboard, prediction, analysis, model_comparison, about):
+    importlib.reload(_mod)
 
 # ------------------------------------------------------------------
 # Sidebar Navigation
