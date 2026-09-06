@@ -9,47 +9,23 @@
 /* ---------- Theme Color Variables (Light Theme Default) ---------- */
 :root {
     --text-primary: #1a1a2e;
-    --text-secondary: #6c757d;
-    --text-muted: #495057;
-    --card-bg: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    --card-border: #e9ecef;
-    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --text-secondary: #4a5568;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --card-hover-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     --card-high-bg: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
     --card-medium-bg: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
     --card-low-bg: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
-    --info-bg: #f0f4ff;
-    --info-text: #2d3748;
-    --banner-bg: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
-    --banner-border: #ffc107;
-    --banner-text: #856404;
-    --border-color: #e9ecef;
+    --info-bg: #eef2ff;
+    --info-text: #1e293b;
+    --banner-bg: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    --banner-border: #f59e0b;
+    --banner-text: #92400e;
+    --border-color: #e2e8f0;
     --about-card-bg: #ffffff;
     --chart-container-bg: #ffffff;
-}
-
-/* ---------- Dark Theme Overrides (System Preference) ---------- */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text-primary: #f1f3f9;
-        --text-secondary: #94a3b8;
-        --text-muted: #cbd5e1;
-        --card-bg: linear-gradient(135deg, #1e222b 0%, #151821 100%);
-        --card-border: #2d323f;
-        --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
-        --card-high-bg: linear-gradient(135deg, #0a2618 0%, #151821 100%);
-        --card-medium-bg: linear-gradient(135deg, #2b1f06 0%, #151821 100%);
-        --card-low-bg: linear-gradient(135deg, #2c0e14 0%, #151821 100%);
-        --info-bg: #151f33;
-        --info-text: #e2e8f0;
-        --banner-bg: linear-gradient(135deg, #332701 0%, #241c00 100%);
-        --banner-border: #856404;
-        --banner-text: #ffd166;
-        --border-color: #2d323f;
-        --about-card-bg: #1a1e27;
-        --chart-container-bg: #1a1e27;
-    }
 }
 
 /* ---------- Global Overrides ---------- */
@@ -220,18 +196,24 @@ html, body, [class*="css"] {
 
 /* ---------- Sidebar Styling ---------- */
 .sidebar-title {
-    font-size: 1.1rem;
+    font-size: 1.12rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.3rem;
 }
 
-.sidebar-footer {
-    position: fixed;
-    bottom: 1rem;
+.sidebar-footer-title {
     font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
     color: var(--text-secondary);
-    line-height: 1.5;
+}
+
+.sidebar-footer-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+    line-height: 1.4;
 }
 
 /* ---------- About Page Cards ---------- */

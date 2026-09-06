@@ -93,10 +93,10 @@ with st.sidebar:
     st.markdown(
         """
         <div style="text-align: center; padding: 0.5rem 0;">
-            <div style="font-size: 0.78rem; color: #adb5bd; font-weight: 600;">
+            <div class="sidebar-footer-title">
                 CAPSTONE PROJECT
             </div>
-            <div style="font-size: 0.72rem; color: #ced4da; margin-top: 0.3rem; line-height: 1.4;">
+            <div class="sidebar-footer-sub">
                 Student Performance<br>
                 Prediction & Analysis System
             </div>
@@ -123,6 +123,9 @@ if st.session_state.get("app_theme") == "🌙 Dark":
         [data-testid="stSidebar"] * {
             color: #e2e8f0;
         }
+        .sidebar-title {
+            color: #f1f3f9 !important;
+        }
         :root, body, .stApp {
             --text-primary: #f1f3f9 !important;
             --text-secondary: #94a3b8 !important;
@@ -142,6 +145,101 @@ if st.session_state.get("app_theme") == "🌙 Dark":
             --border-color: #2d323f !important;
             --about-card-bg: #1a1e27 !important;
             --chart-container-bg: #1a1e27 !important;
+        }
+        .main-header {
+            color: #f1f3f9 !important;
+        }
+        .main-subtitle {
+            color: #94a3b8 !important;
+        }
+        .section-header {
+            color: #f1f3f9 !important;
+            border-bottom-color: #2d323f !important;
+        }
+        .kpi-card {
+            background: linear-gradient(135deg, #1e222b 0%, #151821 100%) !important;
+            border-color: #2d323f !important;
+        }
+        .kpi-card .kpi-value {
+            color: #f1f3f9 !important;
+        }
+        .kpi-card .kpi-label {
+            color: #94a3b8 !important;
+        }
+        .sidebar-footer-title {
+            color: #94a3b8 !important;
+        }
+        .sidebar-footer-sub {
+            color: #64748b !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+else:
+    st.markdown(
+        """
+        <style>
+        .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+            background-color: #ffffff !important;
+            color: #1a1a2e !important;
+        }
+        [data-testid="stSidebar"] {
+            background-color: #f8f9fa !important;
+            border-right: 1px solid #e9ecef !important;
+        }
+        [data-testid="stSidebar"] * {
+            color: #1a1a2e;
+        }
+        .sidebar-title {
+            color: #1a1a2e !important;
+        }
+        :root, body, .stApp {
+            --text-primary: #1a1a2e !important;
+            --text-secondary: #4a5568 !important;
+            --text-muted: #64748b !important;
+            --card-bg: #ffffff !important;
+            --card-border: #e2e8f0 !important;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+            --card-hover-shadow: 0 6px 18px rgba(0, 0, 0, 0.08) !important;
+            --card-high-bg: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%) !important;
+            --card-medium-bg: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%) !important;
+            --card-low-bg: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%) !important;
+            --info-bg: #eef2ff !important;
+            --info-text: #1e293b !important;
+            --banner-bg: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+            --banner-border: #f59e0b !important;
+            --banner-text: #92400e !important;
+            --border-color: #e2e8f0 !important;
+            --about-card-bg: #ffffff !important;
+            --chart-container-bg: #ffffff !important;
+        }
+        .main-header {
+            color: #1a1a2e !important;
+        }
+        .main-subtitle {
+            color: #4a5568 !important;
+        }
+        .section-header {
+            color: #1a1a2e !important;
+            border-bottom-color: #e2e8f0 !important;
+        }
+        .kpi-card {
+            background: #ffffff !important;
+            border-color: #e2e8f0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+        }
+        .kpi-card .kpi-value {
+            color: #1a1a2e !important;
+        }
+        .kpi-card .kpi-label {
+            color: #4a5568 !important;
+        }
+        .sidebar-footer-title {
+            color: #64748b !important;
+        }
+        .sidebar-footer-sub {
+            color: #475569 !important;
         }
         </style>
         """,

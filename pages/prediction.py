@@ -19,6 +19,9 @@ CATEGORY_STYLES = {
     "Low": {"color": "#ef476f", "emoji": "🔴", "bg": "#fef2f2"},
 }
 
+def get_chart_template():
+    return "plotly_dark" if st.session_state.get("app_theme") == "🌙 Dark" else "plotly_white"
+
 
 def render():
     """Render the Student Prediction page."""
@@ -199,7 +202,9 @@ def render():
                     radialaxis=dict(visible=True, range=[0, 100]),
                 ),
                 showlegend=False,
-                template="plotly_white",
+                template=get_chart_template(),
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="rgba(0,0,0,0)",
                 height=400,
                 margin=dict(t=40, b=40, l=60, r=60),
             )
@@ -222,7 +227,9 @@ def render():
                 textposition="outside",
             ))
             fig_contrib.update_layout(
-                template="plotly_white",
+                template=get_chart_template(),
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="rgba(0,0,0,0)",
                 height=400,
                 margin=dict(t=20, b=20, l=10, r=40),
                 xaxis_title="Contribution to Score",

@@ -26,10 +26,10 @@ def render():
     st.markdown(
         """
         <div class="kpi-card kpi-blue" style="text-align: left; margin-bottom: 1.5rem;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.3rem;">
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem;">
                 🎓 Student Performance Prediction & Analysis System
             </div>
-            <div style="font-size: 0.95rem; color: #6c757d;">
+            <div style="font-size: 0.95rem; color: var(--text-secondary);">
                 Capstone Project — B.Tech Computer Science & Engineering
             </div>
         </div>
@@ -94,8 +94,8 @@ def render():
                 f"""
                 <div class="kpi-card" style="text-align: left; min-height: 130px;">
                     <div style="font-size: 1.3rem; margin-bottom: 0.4rem;">{icon}</div>
-                    <div style="font-weight: 600; color: #1a1a2e; margin-bottom: 0.3rem;">{name}</div>
-                    <div style="font-size: 0.85rem; color: #6c757d; line-height: 1.5;">{desc}</div>
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem;">{name}</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">{desc}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -122,8 +122,8 @@ def render():
                 f"""
                 <div class="kpi-card" style="text-align: left; min-height: 120px;">
                     <div style="font-size: 1.2rem; margin-bottom: 0.3rem;">{icon}</div>
-                    <div style="font-weight: 600; color: #1a1a2e; margin-bottom: 0.2rem;">{name}</div>
-                    <div style="font-size: 0.82rem; color: #6c757d; line-height: 1.4;">{desc}</div>
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem;">{name}</div>
+                    <div style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4;">{desc}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -191,8 +191,8 @@ def render():
                 f"""
                 <div style="text-align: center; padding: 0.8rem 0.3rem; margin-bottom: 0.5rem; min-height: 110px;">
                     <div style="font-size: 1.5rem;">{icon}</div>
-                    <div style="font-weight: 600; font-size: 0.85rem; color: #1a1a2e; margin: 0.2rem 0;">{title}</div>
-                    <div style="font-size: 0.75rem; color: #6c757d;">{desc}</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-primary); margin: 0.2rem 0;">{title}</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">{desc}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -205,8 +205,8 @@ def render():
                 f"""
                 <div style="text-align: center; padding: 0.8rem 0.3rem; margin-bottom: 0.5rem; min-height: 110px;">
                     <div style="font-size: 1.5rem;">{icon}</div>
-                    <div style="font-weight: 600; font-size: 0.85rem; color: #1a1a2e; margin: 0.2rem 0;">{title}</div>
-                    <div style="font-size: 0.75rem; color: #6c757d;">{desc}</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-primary); margin: 0.2rem 0;">{title}</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">{desc}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,

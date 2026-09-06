@@ -33,6 +33,9 @@ MODEL_COLORS = {
     "Random Forest": "#06d6a0",
 }
 
+def get_chart_template():
+    return "plotly_dark" if st.session_state.get("app_theme") == "🌙 Dark" else "plotly_white"
+
 
 def render():
     """Render the Model Comparison page."""
@@ -90,10 +93,10 @@ def render():
                 f"""
                 <div class="kpi-card" style="text-align: left; min-height: 160px;">
                     <div style="font-size: 1.4rem; margin-bottom: 0.5rem;">{icon}</div>
-                    <div style="font-weight: 600; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.4rem;">
+                    <div style="font-weight: 600; font-size: 1rem; color: var(--text-primary); margin-bottom: 0.4rem;">
                         {name}
                     </div>
-                    <div style="font-size: 0.85rem; color: #6c757d; line-height: 1.5;">
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
                         {desc}
                     </div>
                 </div>
@@ -150,7 +153,9 @@ def render():
 
     fig_compare.update_layout(
         barmode="group",
-        template="plotly_white",
+        template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         height=450,
         margin=dict(t=30, b=60, l=60, r=20),
         yaxis=dict(range=[0, 1], title="Score", tickformat=".0%"),
@@ -180,7 +185,9 @@ def render():
 
     fig_radar.update_layout(
         polar=dict(radialaxis=dict(visible=True, range=[0.5, 1.0], tickformat=".0%")),
-        template="plotly_white",
+        template=get_chart_template(),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         height=450,
         margin=dict(t=30, b=50, l=60, r=60),
         legend=dict(orientation="h", yanchor="top", y=-0.15, xanchor="center", x=0.5, title_text=""),
